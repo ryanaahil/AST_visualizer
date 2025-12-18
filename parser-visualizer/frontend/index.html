@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parser Visualizer - AST/Parse Tree Viewer</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌳 Parser Visualizer</h1>
+            <p class="subtitle">Parse and visualize Abstract Syntax Trees (AST)</p>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Left Panel: Editor -->
+            <div class="panel left-panel">
+                <div class="panel-header">
+                    <h2>Code Input</h2>
+                    <div class="button-group">
+                        <select id="exampleSelect" class="button">
+                            <option value="">Select Example...</option>
+                            <option value="hello_world">Hello World</option>
+                            <option value="function">Function Definition</option>
+                            <option value="class">Class Definition</option>
+                            <option value="loop_and_condition">Loop & Condition</option>
+                            <option value="lambda">Lambda Functions</option>
+                        </select>
+                        <button id="parseBtn" class="button primary">Parse Code</button>
+                        <button id="clearBtn" class="button">Clear</button>
+                    </div>
+                </div>
+                <textarea id="codeEditor" placeholder="Enter Python code here...
+Example:
+def hello():
+    return 'world'"></textarea>
+                <div id="errorMessage" class="error-message"></div>
+                <div class="info-panel">
+                    <span id="lineCount">Lines: 0</span> | 
+                    <span id="charCount">Chars: 0</span>
+                </div>
+            </div>
+
+            <!-- Right Panel: Visualization -->
+            <div class="panel right-panel">
+                <div class="panel-header">
+                    <h2>AST Visualization</h2>
+                    <div class="controls">
+                        <div class="layout-toggle">
+                            <label>Layout:</label>
+                            <button id="forceLayoutBtn" class="button small">Force</button>
+                            <button id="treeLayoutBtn" class="button small">Tree</button>
+                        </div>
+                        <button id="zoomInBtn" class="button small">Zoom In</button>
+                        <button id="zoomOutBtn" class="button small">Zoom Out</button>
+                        <button id="resetZoomBtn" class="button small">Reset</button>
+                        <button id="exportBtn" class="button small">Export JSON</button>
+                    </div>
+                </div>
+                <div id="visualizationContainer">
+                    <svg id="svg"></svg>
+                    <div id="tooltip" class="tooltip"></div>
+                </div>
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Parsing...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Panel: Node Details -->
+        <div class="bottom-panel">
+            <div class="panel-header">
+                <h3>Node Details</h3>
+            </div>
+            <div id="nodeDetails" class="node-details">
+                <p class="placeholder">Click on a node to view details</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="static/app.js"></script>
+</body>
+</html>
